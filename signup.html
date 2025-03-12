@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODCEVENT - Register</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="signup.js">
+</head>
+<body>
+    <div class="container"><img src="eventlogo2.png" alt="Company Logo" class="logo" height="200" breadth="50">
+             
+        <h2>Step - 1</h2>
+
+        <form id="registerForm">
+            
+            <input type="email" id="email" class="form-control" placeholder="Email" required>
+
+            
+            <input type="password" id="pin" class="form-control" placeholder="Create 4 digit pin" maxlength="4" required>
+
+           
+            <input type="tel" id="mobile" class="form-control" placeholder="Add Mobile Number" pattern="[0-9]{10}" required>
+
+              
+            
+            <input type="tel" id="fullName" class="form-control" placeholder="Enter your name" pattern="[A-Za-z ]{2,}" required>
+
+
+
+            <input type="text" id="address" class="form-control" placeholder="Enter your address" required>
+
+
+                
+                    
+            <input type="text" id="locationInput" class="form-control" placeholder="Enter Location" required>
+
+                <button type="button" class="btn btn-outline" onclick="validateAndRedirect()">Next</button>
+            <p class="login-link">
+                <a href="index.html">Already have an account? Sign in Now!
+            </p>
+        </form>
+    </div>
+
+   
+</body>
+</html>
+
+<script>document.addEventListener("DOMContentLoaded", function () {
+    function validateAndRedirect() {
+        let email = document.getElementById("email").value.trim();
+        let pin = document.getElementById("pin").value.trim();
+        let mobile = document.getElementById("mobile").value.trim();
+        let fullName = document.getElementById("fullName").value.trim();
+        let address = document.getElementById("address").value.trim();
+        let location = document.getElementById("locationInput").value.trim();
+
+        // Regular Expressions for Validation
+        let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        let mobilePattern = /^[0-9]{10}$/;
+        let pinPattern = /^[0-9]{4}$/;
+        let namePattern = /^[A-Za-z ]{2,}$/;
+
+        if (!email.match(emailPattern)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+        if (!pin.match(pinPattern)) {
+            alert("PIN must be a 4-digit number.");
+            return;
+        }
+        if (!mobile.match(mobilePattern)) {
+            alert("Mobile number must be 10 digits.");
+            return;
+        }
+        if (!fullName.match(namePattern)) {
+            alert("Full name should contain only letters and be at least 2 characters long.");
+            return;
+        }
+        if (address === "" || location === "") {
+            alert("Please fill in the Address and Location fields.");
+            return;
+        }
+
+        // Redirect to typeaccount.html if all validations pass
+        window.location.href = "signup1.html";
+    }
+
+    // Attach function to button click
+    document.querySelector(".btn-outline").addEventListener("click", validateAndRedirect);
+});
+</script>
